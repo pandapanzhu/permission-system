@@ -1,0 +1,31 @@
+
+
+package com.shanyu.permission.modules.sys.dao;
+
+
+import com.baomidou.mybatisplus.core.mapper.BaseMapper;
+import com.shanyu.permission.modules.sys.entity.po.SysConfigEntity;
+import org.apache.ibatis.annotations.Mapper;
+import org.apache.ibatis.annotations.Param;
+import org.apache.ibatis.annotations.Select;
+import org.apache.ibatis.annotations.Update;
+
+/**
+ * 系统配置信息
+ */
+@Mapper
+public interface SysConfigDao extends BaseMapper<SysConfigEntity> {
+
+    /**
+     * 根据key，查询value
+     */
+    @Select("select * from  sys_config where param_key = #{paramKey}")
+    SysConfigEntity queryByKey(String paramKey);
+
+    /**
+     * 根据key，更新value
+     */
+    @Update("update  sys_config set param_value = #{paramValue} where param_key = #{paramKey}")
+    int updateValueByKey(@Param("paramKey") String paramKey, @Param("paramValue") String paramValue);
+
+}
