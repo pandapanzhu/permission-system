@@ -17,10 +17,10 @@ import org.springframework.web.filter.CorsFilter;
  */
 @SpringBootApplication
 @ComponentScan(value = {"com.shanyu.permission","com.shanyu.common"})
-public class MallSystemApplication {
+public class OauthSystemApplication {
 
     public static void main(String[] args) {
-        SpringApplication.run(MallSystemApplication.class, args);
+        SpringApplication.run(OauthSystemApplication.class, args);
     }
 
     /**

@@ -1,12 +1,13 @@
 package com.shanyu.permission.common.aspect;
 
 import com.google.gson.Gson;
-import com.shanyu.permission.common.annotation.SysLog;
-import com.shanyu.permission.modules.sys.entity.po.SysLogEntity;
-import com.shanyu.permission.modules.sys.service.SysLogService;
 import com.shanyu.common.sys.entity.dto.UserDTO;
 import com.shanyu.common.utils.HttpContextUtils;
 import com.shanyu.common.utils.IPUtils;
+import com.shanyu.permission.common.annotation.SysLog;
+import com.shanyu.permission.modules.sys.entity.po.SysLogEntity;
+import com.shanyu.permission.modules.sys.service.SysLogService;
+import lombok.extern.log4j.Log4j2;
 import org.apache.shiro.SecurityUtils;
 import org.aspectj.lang.ProceedingJoinPoint;
 import org.aspectj.lang.annotation.Around;
@@ -24,6 +25,7 @@ import java.util.Date;
 /**
  * 系统日志，切面处理类
  */
+@Log4j2
 @Aspect
 @Component
 public class SysLogAspect {
@@ -71,7 +73,8 @@ public class SysLogAspect {
             String params = new Gson().toJson(args);
             sysLog.setParams(params);
         } catch (Exception e) {
-
+            log.info("解析json失败");
+            e.printStackTrace();
         }
 
         //获取request
